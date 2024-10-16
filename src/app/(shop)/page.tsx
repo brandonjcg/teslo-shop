@@ -1,9 +1,5 @@
-import { monsserat } from "@/fonts";
+import { Title } from "@/components";
 
 export default function ShopPage() {
-  return (
-    <main>
-      <h1 className={monsserat.className}>Hello world</h1>
-    </main>
-  );
+  return <Title title="Shop" subtitle="Shop page" className="mb-2" />;
 }
