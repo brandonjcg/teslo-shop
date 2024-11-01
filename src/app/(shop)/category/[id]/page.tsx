@@ -1,5 +1,5 @@
-import { monsserat } from "@/fonts";
-import { notFound } from "next/navigation";
+import { monsserat } from '@/fonts';
+import { notFound } from 'next/navigation';
 
 interface Props {
   params: {
@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function CategoryPage({ params }: Props) {
-  const sitesAllowed = ["girls", "mens", "kids"];
+  const sitesAllowed = ['girls', 'mens', 'kids'];
   if (!sitesAllowed.includes(params.id)) notFound();
 
   return (

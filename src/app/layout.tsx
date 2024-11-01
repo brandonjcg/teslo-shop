@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import { inter } from "../fonts";
+import type { Metadata } from 'next';
+import './globals.css';
+import { inter } from '../fonts';
 
 export const metadata: Metadata = {
-  title: "Teslo shop",
-  description: "The best shop in the world",
+  title: 'Teslo shop',
+  description: 'The best shop in the world',
 };
 
 export default function RootLayout({

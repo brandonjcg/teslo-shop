@@ -1,10 +1,10 @@
-import { Inter, Montserrat_Alternates } from "next/font/google";
+import { Inter, Montserrat_Alternates } from 'next/font/google';
 
 export const inter = Inter({
-  subsets: ["latin"],
+  subsets: ['latin'],
 });
 
 export const monsserat = Montserrat_Alternates({
-  subsets: ["latin"],
-  weight: ["500", "700"],
+  subsets: ['latin'],
+  weight: ['500', '700'],
 });

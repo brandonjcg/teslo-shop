@@ -1,4 +1,4 @@
-import { monsserat } from "@/fonts";
+import { monsserat } from '@/fonts';
 interface Props {
   title: string;
   subtitle?: string;

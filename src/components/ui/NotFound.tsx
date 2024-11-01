@@ -1,6 +1,6 @@
-import { monsserat } from "@/fonts";
-import Image from "next/image";
-import Link from "next/link";
+import { monsserat } from '@/fonts';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export const NotFoundPage = () => {
   return (

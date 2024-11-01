@@ -1,6 +1,6 @@
-import { monsserat } from "@/fonts";
-import Link from "next/link";
-import { IoCartOutline, IoSearchOutline } from "react-icons/io5";
+import { monsserat } from '@/fonts';
+import Link from 'next/link';
+import { IoCartOutline, IoSearchOutline } from 'react-icons/io5';
 
 export const TopMenu = () => {
   return (

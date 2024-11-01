@@ -1,4 +1,4 @@
-import { SidebarMenu, TopMenu } from "@/components";
+import { SidebarMenu, TopMenu } from '@/components';
 
 export default function ShopLayout({
   children,

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   IoCloseOutline,
@@ -9,8 +9,8 @@ import {
   IoSearchOutline,
   IoShirtOutline,
   IoTicketOutline,
-} from "react-icons/io5";
-import { SidebarMenuItem } from "./SidebarMenuItem";
+} from 'react-icons/io5';
+import { SidebarMenuItem } from './SidebarMenuItem';
 
 export const SidebarMenu = () => {
   return (
@@ -21,7 +21,7 @@ export const SidebarMenu = () => {
       <nav className="fixed p-5 right-0 top-0 w-[500px] h-screen bg-white z-20 shadow-2xl transform transition-all duration-300">
         <IoCloseOutline
           size={50}
-          onClick={() => console.log("close")}
+          onClick={() => console.log('close')}
           className="absolute top-5 right-5 cursor-pointer"
         />
 

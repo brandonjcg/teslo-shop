@@ -1,4 +1,4 @@
-import { monsserat } from "@/fonts";
+import { monsserat } from '@/fonts';
 
 export default function OrdersPage() {
   return (
