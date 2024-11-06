@@ -24,7 +24,7 @@ export const ProductGridItem = ({ product }: Props) => {
         onMouseLeave={() => setDisplayImage(product.images[0])}
       />
       <div className="p-4 flex flex-col hover:text-blue-600">
-        <Link href={`/products/${product.slug}`}>{product.title}</Link>
+        <Link href={`/product/${product.slug}`}>{product.title}</Link>
         <span className="font-bold">${product.price}</span>
       </div>
     </div>

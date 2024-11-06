@@ -13,10 +13,10 @@ interface Props {
 const seedProducts = initialData.products;
 
 const labels: Record<Category, string> = {
-  men: 'Hombres',
-  women: 'Mujeres',
-  kid: 'Niños',
-  unisex: 'Unisex',
+  men: 'men',
+  women: 'women',
+  kid: 'kid',
+  unisex: 'unisex',
 };
 
 export default function CategoryPage({ params }: Props) {
@@ -27,7 +27,7 @@ export default function CategoryPage({ params }: Props) {
     (product) => product.gender === params.id,
   );
 
-  const title = `Artículos de ${labels[params.id]}`;
+  const title = `Articles for ${labels[params.id]}`;
 
   return (
     <>

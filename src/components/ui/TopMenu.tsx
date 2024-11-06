@@ -24,7 +24,7 @@ export const TopMenu = () => {
           className="m-2 p-2 rounded-md transition-all hover:bg-gray-100"
           href="/category/men"
         >
-          Hombres
+          Men
         </Link>
       </div>
 
@@ -33,7 +33,7 @@ export const TopMenu = () => {
           className="m-2 p-2 rounded-md transition-all hover:bg-gray-100"
           href="/category/women"
         >
-          Mujeres
+          Women
         </Link>
       </div>
       <div>
@@ -41,7 +41,7 @@ export const TopMenu = () => {
           className="m-2 p-2 rounded-md transition-all hover:bg-gray-100"
           href="/category/kid"
         >
-          Niños
+          Kid
         </Link>
       </div>
 
