@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { monsserat } from '@/fonts';
 import { initialData } from '@/seed';
-import { SizeSelector } from '@/components';
+import { QuantitySelector, SizeSelector } from '@/components';
 
 interface Props {
   params: {
@@ -30,6 +30,7 @@ export default function ProductPage({ params }: Props) {
         <SizeSelector selectedSize={product.sizes[1]} sizes={product.sizes} />
 
         {/* selector de cantidad */}
+        <QuantitySelector quantity={2} />
 
         {/* button */}
         <button className="btn-primary my-5">Add to cart</button>
