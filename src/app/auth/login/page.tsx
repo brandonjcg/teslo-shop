@@ -4,22 +4,22 @@ import { monsserat } from '@/fonts';
 export default function LoginPage() {
   return (
     <div className="flex flex-col min-h-screen pt-32 sm:pt-52">
-      <h1 className={`${monsserat.className} text-4xl mb-5`}>Ingresar</h1>
+      <h1 className={`${monsserat.className} text-4xl mb-5`}>Login</h1>
 
       <div className="flex flex-col">
-        <label htmlFor="email">Correo electrónico</label>
+        <label htmlFor="email">Email</label>
         <input
           className="px-5 py-2 border bg-gray-200 rounded mb-5"
           type="email"
         />
 
-        <label htmlFor="email">Contraseña</label>
+        <label htmlFor="email">Password</label>
         <input
           className="px-5 py-2 border bg-gray-200 rounded mb-5"
           type="email"
         />
 
-        <button className="btn-primary">Ingresar</button>
+        <button className="btn-primary">Login</button>
 
         {/* divisor l ine */}
         <div className="flex items-center my-5">
@@ -29,7 +29,7 @@ export default function LoginPage() {
         </div>
 
         <Link href="/auth/new-account" className="btn-secondary text-center">
-          Crear una nueva cuenta
+          Create new account
         </Link>
       </div>
     </div>
