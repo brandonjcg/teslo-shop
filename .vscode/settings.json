@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
         "routes",
         "pages",
-        "components"
+        "components",
+        "styles"
     ]
 }
