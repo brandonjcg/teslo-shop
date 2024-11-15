@@ -5,7 +5,8 @@
 1. Clone the repository
 2. Configure the `.env` file
 3. Install the dependencies with `pnpm i`
-4. Run the project with `pnpm dev`
-5. Turn on the database with `docker-compose up -d`
+4. Turn on the database with `docker-compose up -d`
+5. Run the migrations with `npx prisma migrate dev`
+6. Start the server with `pnpm dev`
 
 ## Prod
