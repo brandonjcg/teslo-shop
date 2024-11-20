@@ -7,6 +7,7 @@
 3. Install the dependencies with `pnpm i`
 4. Turn on the database with `docker-compose up -d`
 5. Run the migrations with `npx prisma migrate dev`
-6. Start the server with `pnpm dev`
+6. Run seeds with `pnpm seed`
+7. Start the server with `pnpm dev`
 
 ## Prod

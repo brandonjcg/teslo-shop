@@ -1,18 +1,18 @@
 import { Title } from '@/components';
 import { ProductGrid } from '@/components/products';
-import { Category } from '@/interfaces';
+import { Gender } from '@/interfaces';
 import { initialData } from '@/seed';
 import { notFound } from 'next/navigation';
 
 interface Props {
   params: {
-    id: Category;
+    id: Gender;
   };
 }
 
 const seedProducts = initialData.products;
 
-const labels: Record<Category, string> = {
+const labels: Record<Gender, string> = {
   men: 'men',
   women: 'women',
   kid: 'kid',
