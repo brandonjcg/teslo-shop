@@ -4,6 +4,7 @@
         "pages",
         "components",
         "styles",
-        "database"
+        "database",
+        "scripts"
     ]
 }
