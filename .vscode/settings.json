@@ -3,6 +3,10 @@
         "routes",
         "pages",
         "components",
-        "styles"
+        "styles",
+        "database",
+        "scripts",
+        "pagination",
+        "build"
     ]
 }
