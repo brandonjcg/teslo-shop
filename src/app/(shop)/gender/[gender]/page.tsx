@@ -1,3 +1,5 @@
+export const revalidate = 60;
+
 import { notFound, redirect } from 'next/navigation';
 import { Pagination, Title } from '@/components';
 import { ProductGrid } from '@/components';

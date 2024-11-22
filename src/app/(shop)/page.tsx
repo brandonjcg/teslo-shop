@@ -1,3 +1,5 @@
+export const revalidate = 60;
+
 import { redirect } from 'next/navigation';
 import { getPaginatedProducts } from '@/actions';
 import { Pagination, Title } from '@/components';
