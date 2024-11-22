@@ -1,5 +1,5 @@
 import prisma from '@/lib/prisma';
-import { ProductWithoutImages } from '@/interfaces';
+import { IProductSeed } from '@/interfaces';
 import { initialData } from './seed';
 
 const main = async () => {
@@ -28,7 +28,7 @@ const main = async () => {
   );
 
   const newRows = products.map((product) => {
-    const { type, ...newProduct }: ProductWithoutImages = { ...product };
+    const { type, ...newProduct } = { ...product } as IProductSeed;
     delete newProduct.images;
 
     return {

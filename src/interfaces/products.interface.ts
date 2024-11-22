@@ -7,12 +7,12 @@ export interface Product {
   slug: string;
   tags: string[];
   title: string;
-  type: Type;
   gender: Gender;
 }
 
-export interface ProductWithoutImages extends Omit<Product, 'images'> {
+export interface IProductSeed extends Omit<Product, 'images'> {
   images?: string[];
+  type: Type;
 }
 
 export const genders = ['men', 'women', 'kid', 'unisex'] as const;

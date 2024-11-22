@@ -6,6 +6,7 @@
         "styles",
         "database",
         "scripts",
-        "pagination"
+        "pagination",
+        "build"
     ]
 }
