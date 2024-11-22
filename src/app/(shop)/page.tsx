@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default async function ShopPage({ searchParams }: Props) {
-  const { data, currentPage, totalPages } = await getPaginatedProducts({
+  const { data, totalPages } = await getPaginatedProducts({
     page: +searchParams.page || 1,
   });
   if (!data.length) redirect('/');
@@ -19,7 +19,6 @@ export default async function ShopPage({ searchParams }: Props) {
     <>
       <Title title="Shop" subtitle="Shop page" className="mb-2" />
       <ProductGrid products={data} />
-
       <Pagination totalPages={totalPages} />
     </>
   );
