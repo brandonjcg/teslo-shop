@@ -1,12 +1,14 @@
+export const revalidate = 604800;
+
 import { notFound } from 'next/navigation';
 import { monsserat } from '@/fonts';
-import { initialData } from '@/seed';
 import {
   ProductMobileSlideShow,
   ProductSlideShow,
   QuantitySelector,
   SizeSelector,
 } from '@/components';
+import { getProductBySlug } from '@/actions';
 
 interface Props {
   params: {
@@ -14,9 +16,9 @@ interface Props {
   };
 }
 
-export default function ProductPage({ params }: Props) {
+export default async function ProductPage({ params }: Props) {
   const { slug } = params;
-  const product = initialData.products.find((item) => item.slug === slug);
+  const product = await getProductBySlug(slug);
   if (!product) notFound();
 
   return (
