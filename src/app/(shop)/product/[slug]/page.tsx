@@ -1,6 +1,7 @@
 export const revalidate = 604800;
 
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 import { monsserat } from '@/fonts';
 import {
   ProductMobileSlideShow,
@@ -14,6 +15,24 @@ import { getProductBySlug } from '@/actions';
 interface Props {
   params: {
     slug: string;
+  };
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const slug = params.slug;
+
+  const product = await getProductBySlug(slug);
+  const response = {
+    title: product?.title || `Product ${slug}`,
+    description: product?.description || slug,
+  };
+
+  return {
+    ...response,
+    openGraph: {
+      ...response,
+      images: [`/products/${product?.images[1]}`],
+    },
   };
 }
 
