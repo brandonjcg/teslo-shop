@@ -24,3 +24,19 @@ export const getProductBySlug = async (slug: string) => {
     throw error;
   }
 };
+
+export const getStockBySlug = async (slug: string) => {
+  try {
+    const product = await prisma.product.findUnique({
+      select: {
+        inStock: true,
+      },
+      where: { slug },
+    });
+    if (!product) return null;
+
+    return product.inStock;
+  } catch (error) {
+    throw error;
+  }
+};
