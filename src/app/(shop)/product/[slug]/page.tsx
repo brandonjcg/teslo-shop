@@ -1,12 +1,16 @@
+export const revalidate = 604800;
+
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 import { monsserat } from '@/fonts';
-import { initialData } from '@/seed';
 import {
   ProductMobileSlideShow,
   ProductSlideShow,
   QuantitySelector,
   SizeSelector,
+  StockLabel,
 } from '@/components';
+import { getProductBySlug } from '@/actions';
 
 interface Props {
   params: {
@@ -14,9 +18,27 @@ interface Props {
   };
 }
 
-export default function ProductPage({ params }: Props) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const slug = params.slug;
+
+  const product = await getProductBySlug(slug);
+  const response = {
+    title: product?.title || `Product ${slug}`,
+    description: product?.description || slug,
+  };
+
+  return {
+    ...response,
+    openGraph: {
+      ...response,
+      images: [`/products/${product?.images[1]}`],
+    },
+  };
+}
+
+export default async function ProductPage({ params }: Props) {
   const { slug } = params;
-  const product = initialData.products.find((item) => item.slug === slug);
+  const product = await getProductBySlug(slug);
   if (!product) notFound();
 
   return (
@@ -38,6 +60,7 @@ export default function ProductPage({ params }: Props) {
 
       {/* detalles */}
       <div className="col-span-1 px-5">
+        <StockLabel slug={slug} />
         <h1 className={`${monsserat.className} antialiased font-bold text-xl`}>
           {product.title}
         </h1>
