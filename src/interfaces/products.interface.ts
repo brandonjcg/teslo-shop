@@ -1,4 +1,5 @@
 export interface Product {
+  id: string;
   description: string;
   images: string[];
   inStock: number;
@@ -30,4 +31,14 @@ export type Type = (typeof types)[number];
 export interface SeedData {
   categories: Type[];
   products: IProductInitialData[];
+}
+
+export interface ProductOfCart {
+  id: string;
+  slug: string;
+  title: string;
+  price: number;
+  quantity: number;
+  size: Size;
+  image: string;
 }
