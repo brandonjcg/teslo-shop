@@ -9,6 +9,7 @@
         "pagination",
         "build",
         "actions",
-        "auth"
+        "auth",
+        "seeds"
     ],
 }

@@ -6,6 +6,10 @@ import { authenticate } from '@/actions';
 
 export const LoginForm = () => {
   const [state, dispatch] = useFormState(authenticate, undefined);
+  console.log(
+    `🚀 ${new Date().toLocaleString('en-US', { timeZone: 'America/Tijuana', hour12: false })} ~ LoginForm ~ state:`,
+    state,
+  );
 
   return (
     <form action={dispatch} className="flex flex-col">
