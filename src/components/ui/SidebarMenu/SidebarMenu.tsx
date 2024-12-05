@@ -1,5 +1,6 @@
 'use client';
 
+import clsx from 'clsx';
 import {
   IoCloseOutline,
   IoLogInOutline,
@@ -10,9 +11,9 @@ import {
   IoShirtOutline,
   IoTicketOutline,
 } from 'react-icons/io5';
-import { SidebarMenuItem } from './SidebarMenuItem';
 import { useUIStore } from '@/store';
-import clsx from 'clsx';
+import { logout } from '@/actions';
+import { SidebarMenuItem } from './SidebarMenuItem';
 
 export const SidebarMenu = () => {
   const isSidebarMenuOpen = useUIStore((state) => state.isSidebarMenuOpen);
@@ -73,8 +74,10 @@ export const SidebarMenu = () => {
         />
         <SidebarMenuItem
           title="Logout"
-          onClick={closeSidebarMenu}
-          path="/auth/logout"
+          onClick={() => {
+            logout();
+            closeSidebarMenu();
+          }}
           icon={<IoLogOutOutline size={30} />}
         />
 

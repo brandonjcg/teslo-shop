@@ -11,6 +11,7 @@
         "actions",
         "auth",
         "seeds",
-        "repo"
+        "repo",
+        "sidebar"
     ],
 }
