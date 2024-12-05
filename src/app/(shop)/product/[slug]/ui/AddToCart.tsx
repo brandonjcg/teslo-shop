@@ -30,12 +30,6 @@ export const AddToCart = ({ product }: Props) => {
     setIsReady(true);
     setSize(undefined);
     setQuantity(1);
-
-    console.log({
-      product: product.title,
-      size,
-      quantity,
-    });
   };
 
   return (

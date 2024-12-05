@@ -53,7 +53,12 @@ export const SidebarMenu = () => {
           />
         </div>
 
-        <SidebarMenuItem title="Profile" icon={<IoPersonOutline size={30} />} />
+        <SidebarMenuItem
+          title="Profile"
+          path="/profile"
+          icon={<IoPersonOutline size={30} />}
+          onClick={closeSidebarMenu}
+        />
         <SidebarMenuItem title="Orders" icon={<IoTicketOutline size={30} />} />
         <SidebarMenuItem title="Login" icon={<IoLogInOutline size={30} />} />
         <SidebarMenuItem title="Logout" icon={<IoLogOutOutline size={30} />} />

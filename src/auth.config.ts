@@ -15,7 +15,7 @@ export const authConfig = {
         const parsedCredentials = z
           .object({
             email: z.string().email(),
-            password: z.string().min(6),
+            password: z.string().min(4),
           })
           .safeParse(credentials);
         if (!parsedCredentials.success) return null;
@@ -38,4 +38,4 @@ export const authConfig = {
   ],
 } satisfies NextAuthConfig;
 
-export const { signIn, signOut } = NextAuth(authConfig);
+export const { signIn, signOut, auth } = NextAuth(authConfig);

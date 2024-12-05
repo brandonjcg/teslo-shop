@@ -2,14 +2,12 @@
 
 import Link from 'next/link';
 import { useFormState } from 'react-dom';
+import { IoInformationOutline } from 'react-icons/io5';
 import { authenticate } from '@/actions';
+import { LoginButton } from './LoginButton';
 
 export const LoginForm = () => {
   const [state, dispatch] = useFormState(authenticate, undefined);
-  console.log(
-    `🚀 ${new Date().toLocaleString('en-US', { timeZone: 'America/Tijuana', hour12: false })} ~ LoginForm ~ state:`,
-    state,
-  );
 
   return (
     <form action={dispatch} className="flex flex-col">
@@ -27,7 +25,14 @@ export const LoginForm = () => {
         name="password"
       />
 
-      <button className="btn-primary">Login</button>
+      {state === 'Invalid credentials' && (
+        <div className="flex items-center mb-2">
+          <IoInformationOutline className="h-5 w-5 text-red-500" />
+          <p className="text-sm text-red-500">{state}</p>
+        </div>
+      )}
+
+      <LoginButton />
 
       {/* divisor line */}
       <div className="flex items-center my-5">
