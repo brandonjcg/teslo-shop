@@ -59,15 +59,45 @@ export const SidebarMenu = () => {
           icon={<IoPersonOutline size={30} />}
           onClick={closeSidebarMenu}
         />
-        <SidebarMenuItem title="Orders" icon={<IoTicketOutline size={30} />} />
-        <SidebarMenuItem title="Login" icon={<IoLogInOutline size={30} />} />
-        <SidebarMenuItem title="Logout" icon={<IoLogOutOutline size={30} />} />
+        <SidebarMenuItem
+          title="Orders"
+          icon={<IoTicketOutline size={30} />}
+          onClick={closeSidebarMenu}
+          path="/orders"
+        />
+        <SidebarMenuItem
+          title="Login"
+          icon={<IoLogInOutline size={30} />}
+          onClick={closeSidebarMenu}
+          path="/auth/login"
+        />
+        <SidebarMenuItem
+          title="Logout"
+          onClick={closeSidebarMenu}
+          path="/auth/logout"
+          icon={<IoLogOutOutline size={30} />}
+        />
 
         <div className="w-full h-px bg-gray-200 my-10" />
 
-        <SidebarMenuItem title="Products" icon={<IoShirtOutline size={30} />} />
-        <SidebarMenuItem title="Orders" icon={<IoTicketOutline size={30} />} />
-        <SidebarMenuItem title="Users" icon={<IoPeopleOutline size={30} />} />
+        <SidebarMenuItem
+          title="Products"
+          path="/gender/men"
+          icon={<IoShirtOutline size={30} />}
+          onClick={closeSidebarMenu}
+        />
+        <SidebarMenuItem
+          title="Orders"
+          path="/orders"
+          onClick={closeSidebarMenu}
+          icon={<IoTicketOutline size={30} />}
+        />
+        <SidebarMenuItem
+          title="Users"
+          path="/users"
+          onClick={closeSidebarMenu}
+          icon={<IoPeopleOutline size={30} />}
+        />
       </nav>
     </div>
   );
