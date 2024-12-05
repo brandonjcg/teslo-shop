@@ -8,6 +8,7 @@
         "scripts",
         "pagination",
         "build",
-        "actions"
+        "actions",
+        "auth"
     ],
 }

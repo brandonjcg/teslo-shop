@@ -16,7 +16,7 @@ export interface IProductSeed extends Omit<Product, 'images'> {
   type: Type;
 }
 
-export interface IProductInitialData extends Product {
+export interface IProductInitialData extends Omit<Product, 'id'> {
   type: Type;
 }
 
@@ -31,6 +31,7 @@ export type Type = (typeof types)[number];
 export interface SeedData {
   categories: Type[];
   products: IProductInitialData[];
+  users: IUserSeed[];
 }
 
 export interface ProductOfCart {
@@ -41,4 +42,17 @@ export interface ProductOfCart {
   quantity: number;
   size: Size;
   image: string;
+}
+
+// user
+export enum EnumRole {
+  ADMIN = 'admin',
+  USER = 'user',
+}
+
+export interface IUserSeed {
+  email: string;
+  name: string;
+  password: string;
+  role: EnumRole;
 }
