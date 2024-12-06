@@ -1,6 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
+import { useSession } from 'next-auth/react';
 import {
   IoCloseOutline,
   IoLogInOutline,
@@ -18,6 +19,8 @@ import { SidebarMenuItem } from './SidebarMenuItem';
 export const SidebarMenu = () => {
   const isSidebarMenuOpen = useUIStore((state) => state.isSidebarMenuOpen);
   const closeSidebarMenu = useUIStore((state) => state.closeSidebarMenu);
+  const { data: session } = useSession();
+  const isLogged = !!session?.user;
 
   return (
     <div>
@@ -66,20 +69,25 @@ export const SidebarMenu = () => {
           onClick={closeSidebarMenu}
           path="/orders"
         />
-        <SidebarMenuItem
-          title="Login"
-          icon={<IoLogInOutline size={30} />}
-          onClick={closeSidebarMenu}
-          path="/auth/login"
-        />
-        <SidebarMenuItem
-          title="Logout"
-          onClick={() => {
-            logout();
-            closeSidebarMenu();
-          }}
-          icon={<IoLogOutOutline size={30} />}
-        />
+        {isLogged && (
+          <SidebarMenuItem
+            title="Logout"
+            onClick={() => {
+              logout();
+              closeSidebarMenu();
+            }}
+            icon={<IoLogOutOutline size={30} />}
+          />
+        )}
+
+        {!isLogged && (
+          <SidebarMenuItem
+            title="Login"
+            icon={<IoLogInOutline size={30} />}
+            onClick={closeSidebarMenu}
+            path="/auth/login"
+          />
+        )}
 
         <div className="w-full h-px bg-gray-200 my-10" />
 
