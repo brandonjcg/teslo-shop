@@ -80,13 +80,13 @@ model ProductImage {
 }
 
 model User {
-  id                String    @id @default(uuid())
-  name              String
-  email             String    @unique
-  dateEmailVerified DateTime?
-  password          String
-  role              Role      @default(user)
-  image             String?
+  id            String  @id @default(uuid())
+  name          String
+  email         String  @unique
+  emailVerified Boolean @default(false)
+  password      String
+  role          Role    @default(user)
+  image         String?
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt

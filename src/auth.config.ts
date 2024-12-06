@@ -3,11 +3,24 @@ import Credentials from 'next-auth/providers/credentials';
 import { z } from 'zod';
 import bcryptjs from 'bcryptjs';
 import prisma from './lib/prisma';
+import { IUserSession } from './interfaces';
 
 export const authConfig = {
   pages: {
     signIn: '/auth/login',
     newUser: '/auth/new-account',
+  },
+  callbacks: {
+    jwt: async ({ token, user }) => {
+      if (user) token.data = user;
+
+      return token;
+    },
+    session: async ({ session, token }) => {
+      session.user = token.data as IUserSession;
+
+      return session;
+    },
   },
   providers: [
     Credentials({
