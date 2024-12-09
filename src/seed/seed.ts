@@ -1,4 +1,5 @@
-import { SeedData, types } from '@/interfaces';
+import bcryptjs from 'bcryptjs';
+import { EnumRole, SeedData, types } from '@/interfaces';
 
 export const initialData: SeedData = {
   products: [
@@ -682,7 +683,18 @@ export const initialData: SeedData = {
     },
   ],
   categories: [...types],
+  users: [
+    {
+      email: 'brajoel98@gmail.com',
+      name: 'Brandon Castillo',
+      password: bcryptjs.hashSync('brajoel98', 10),
+      role: EnumRole.ADMIN,
+    },
+    {
+      email: 'pepe.panda@gmail.com',
+      name: 'Pepe Panda',
+      password: bcryptjs.hashSync('pepe', 10),
+      role: EnumRole.USER,
+    },
+  ],
 };
-
-// TODO: Aqui me quede
-// https://cursos.devtalles.com/courses/take/nextjs/lessons/50367126-semilla-de-base-de-datos-categorias

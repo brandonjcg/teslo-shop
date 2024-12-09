@@ -6,11 +6,10 @@ import { monsserat } from '@/fonts';
 import {
   ProductMobileSlideShow,
   ProductSlideShow,
-  QuantitySelector,
-  SizeSelector,
   StockLabel,
 } from '@/components';
 import { getProductBySlug } from '@/actions';
+import { AddToCart } from './ui';
 
 interface Props {
   params: {
@@ -66,15 +65,7 @@ export default async function ProductPage({ params }: Props) {
         </h1>
         <p className="text-lg mb-5">${product.price}</p>
 
-        {/* selector de tallas */}
-        <SizeSelector selectedSize={product.sizes[1]} sizes={product.sizes} />
-
-        {/* selector de cantidad */}
-        <QuantitySelector quantity={2} />
-
-        {/* button */}
-        <button className="btn-primary my-5">Add to cart</button>
-
+        <AddToCart product={product} />
         {/* descripción */}
 
         <h3 className="font-bold text-sm">Description</h3>

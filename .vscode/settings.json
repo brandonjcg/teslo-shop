@@ -8,6 +8,10 @@
         "scripts",
         "pagination",
         "build",
-        "actions"
+        "actions",
+        "auth",
+        "seeds",
+        "repo",
+        "sidebar"
     ],
 }
