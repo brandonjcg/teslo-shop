@@ -1,8 +1,10 @@
 'use client';
 
-import Link from 'next/link';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import Link from 'next/link';
 import clsx from 'clsx';
+import { registerUser } from '@/actions';
 
 interface FormInputs {
   fullName: string;
@@ -16,14 +18,16 @@ export const RegisterForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormInputs>();
+  const [errorMessage, setErrorMessage] = useState('');
 
   const onSubmit = async (data: FormInputs) => {
     const { email, fullName, password } = data;
+    const response = await registerUser({ email, name: fullName, password });
+    if (response.error)
+      return setErrorMessage(response.message || 'An error occurred');
     console.log(
-      `🚀 ${new Date().toLocaleString('en-US', { timeZone: 'America/Tijuana', hour12: false })} ~ onSubmit ~ email, fullName, password:`,
-      email,
-      fullName,
-      password,
+      `🚀 ${new Date().toLocaleString('en-US', { timeZone: 'America/Tijuana', hour12: false })} ~ onSubmit ~ response:`,
+      response,
     );
   };
 
@@ -68,6 +72,8 @@ export const RegisterForm = () => {
       {errors.password?.type === 'required' && (
         <p className="text-red-500">Password is required</p>
       )}
+
+      {errorMessage && <p className="text-red-500">{errorMessage}</p>}
 
       <br />
 
