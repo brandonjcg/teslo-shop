@@ -12,6 +12,7 @@
         "auth",
         "seeds",
         "repo",
-        "sidebar"
+        "sidebar",
+        "forms"
     ],
 }
