@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Link from 'next/link';
 import clsx from 'clsx';
-import { registerUser } from '@/actions';
+import { login, registerUser } from '@/actions';
 
 interface FormInputs {
   fullName: string;
@@ -25,10 +25,9 @@ export const RegisterForm = () => {
     const response = await registerUser({ email, name: fullName, password });
     if (response.error)
       return setErrorMessage(response.message || 'An error occurred');
-    console.log(
-      `🚀 ${new Date().toLocaleString('en-US', { timeZone: 'America/Tijuana', hour12: false })} ~ onSubmit ~ response:`,
-      response,
-    );
+
+    await login({ email, password });
+    window.location.replace('/');
   };
 
   return (

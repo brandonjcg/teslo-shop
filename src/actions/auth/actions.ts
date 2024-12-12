@@ -1,6 +1,7 @@
 'use server';
 
 import { signIn } from '@/auth.config';
+import { ILogin } from '@/interfaces';
 import { AuthError } from 'next-auth';
 
 export async function authenticate(
@@ -26,3 +27,21 @@ export async function authenticate(
     throw error;
   }
 }
+
+export const login = async ({ email, password }: ILogin) => {
+  try {
+    await signIn('credentials', {
+      email,
+      password,
+    });
+
+    return {
+      success: true,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: (error as Error).message || 'Something went wrong',
+    };
+  }
+};
