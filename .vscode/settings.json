@@ -13,6 +13,7 @@
         "seeds",
         "repo",
         "sidebar",
-        "forms"
+        "forms",
+        "store"
     ],
 }

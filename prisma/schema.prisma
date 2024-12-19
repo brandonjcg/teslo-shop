@@ -91,11 +91,35 @@ model User {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
+
+  address UserAddress?
 }
 
 model Country {
   id   String @id
   name String
+
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  deletedAt   DateTime?
+  UserAddress UserAddress[]
+}
+
+model UserAddress {
+  id         String  @id @default(uuid())
+  firstName  String
+  lastName   String
+  address    String
+  address2   String?
+  postalCode String
+  city       String
+  phone      String
+
+  country   Country @relation(fields: [idCountry], references: [id])
+  idCountry String
+
+  user   User   @relation(fields: [idUser], references: [id])
+  idUser String @unique
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt

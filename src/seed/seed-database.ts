@@ -6,6 +6,7 @@ const main = async () => {
   if (process.env.NODE_ENV !== 'development') return;
 
   // reset tables
+  await prisma.userAddress.deleteMany();
   await prisma.country.deleteMany();
   await prisma.user.deleteMany();
   await prisma.productImage.deleteMany();
