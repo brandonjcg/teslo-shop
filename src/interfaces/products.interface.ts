@@ -1,3 +1,5 @@
+import { ICountrySeed } from '@/seed';
+
 export interface Product {
   id: string;
   description: string;
@@ -32,6 +34,7 @@ export interface SeedData {
   categories: Type[];
   products: IProductInitialData[];
   users: IUserSeed[];
+  countries: ICountrySeed[];
 }
 
 export interface ProductOfCart {

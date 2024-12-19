@@ -92,3 +92,12 @@ model User {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 }
+
+model Country {
+  id   String @id
+  name String
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
