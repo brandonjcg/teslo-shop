@@ -2,39 +2,32 @@
 
 import { useForm } from 'react-hook-form';
 import clsx from 'clsx';
-import { ISeedCountry } from '@/interfaces';
-
-type FormInputs = {
-  firstName: string;
-  lastName: string;
-  address: string;
-  address2?: string;
-  postalCode: string;
-  city: string;
-  country: string;
-  phone: string;
-  rememberAddress: boolean;
-};
+import { IAddressForm, ISeedCountry } from '@/interfaces';
+import { useAddressStore } from '@/store/address-store';
+import { useEffect } from 'react';
 
 interface Props {
   countries: ISeedCountry[];
 }
 
 export const AddressForm = ({ countries }: Props) => {
+  const address = useAddressStore((state) => state.address);
+  const setAddress = useAddressStore((state) => state.setAddress);
+  const onSubmit = async (data: IAddressForm) => setAddress(data);
   const {
     handleSubmit,
     register,
     formState: { isValid },
-  } = useForm<FormInputs>({
+    reset,
+  } = useForm<IAddressForm>({
     defaultValues: {},
   });
 
-  const onSubmit = async (data: FormInputs) => {
-    console.log(
-      `🚀 ${new Date().toLocaleString('en-US', { timeZone: 'America/Tijuana', hour12: false })} ~ onSubmit ~ data:`,
-      data,
-    );
-  };
+  useEffect(() => {
+    if (address.firstName) {
+      reset(address);
+    }
+  }, [address, reset]);
 
   return (
     <form
