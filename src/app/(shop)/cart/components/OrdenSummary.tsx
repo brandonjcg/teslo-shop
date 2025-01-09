@@ -41,7 +41,7 @@ export const OrdenSummary = () => {
         >
           Checkout
         </Link>
-      </div>{' '}
+      </div>
     </div>
   );
 };
