@@ -4,12 +4,15 @@ import { useEffect, useState } from 'react';
 import { useAddressStore, useCartStore } from '@/store';
 import { currencyFormat } from '@/utils';
 import clsx from 'clsx';
+import { placeOrder } from '@/actions/order/place-order';
+import { GLOBAL_TAX } from '@/constants/cart';
 
 export const PlaceOrder = () => {
   const [loaded, setLoaded] = useState(false);
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);
 
   const address = useAddressStore((state) => state.address);
+  const cart = useCartStore((state) => state.cart);
   const { getSummaryInfo } = useCartStore();
   const { totalItems, subTotal, taxes, total } = getSummaryInfo();
 
@@ -20,8 +23,14 @@ export const PlaceOrder = () => {
   const onPlaceOrder = async () => {
     setIsPlacingOrder(true);
 
-    // delay for 2 seconds to simulate the order placement
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    const productsToOrder = cart.map((item) => ({
+      idProduct: item.id,
+      quantity: item.quantity,
+      size: item.size,
+    }));
+    // TODO: send order to server
+
+    await placeOrder(productsToOrder, address);
 
     setIsPlacingOrder(false);
   };
@@ -51,7 +60,7 @@ export const PlaceOrder = () => {
         <span>Sub total</span>
         <span className="text-right">{currencyFormat(subTotal)}</span>
 
-        <span>Taxes 8%</span>
+        <span>Taxes {GLOBAL_TAX}%</span>
         <span className="text-right">{currencyFormat(taxes)}</span>
 
         <span className="mt-5 text-2xl">Total</span>

@@ -3,6 +3,7 @@ import { IoCardOutline } from 'react-icons/io5';
 import clsx from 'clsx';
 import { Title } from '@/components';
 import { initialData } from '@/seed';
+import { GLOBAL_TAX } from '@/constants/cart';
 
 const productsInCart = [
   initialData.products[0],
@@ -84,7 +85,7 @@ export default function OrderPage({ params }: Props) {
               <span>Sub total</span>
               <span className="text-right">$4333</span>
 
-              <span>Taxes 8%</span>
+              <span>Taxes {GLOBAL_TAX}%</span>
               <span className="text-right">$3</span>
 
               <span className="mt-5 text-2xl">Total</span>

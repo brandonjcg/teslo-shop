@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { ProductOfCart } from '@/interfaces';
+import { GLOBAL_TAX } from '@/constants/cart';
 
 interface State {
   cart: ProductOfCart[];
@@ -76,7 +77,7 @@ export const useCartStore = create<State>()(
         cart.forEach((item) => {
           summary.subTotal += item.price * item.quantity;
         });
-        const taxes = summary.subTotal * 0.08;
+        const taxes = summary.subTotal * (GLOBAL_TAX / 100);
         const total = summary.subTotal + taxes;
 
         return {

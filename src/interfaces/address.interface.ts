@@ -7,5 +7,5 @@ export interface IAddressForm {
   city: string;
   country: string;
   phone: string;
-  rememberAddress: boolean;
+  rememberAddress?: boolean;
 }
