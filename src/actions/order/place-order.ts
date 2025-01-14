@@ -51,8 +51,50 @@ export const placeOrder = async (
     cart.taxes = cart.subTotal * (GLOBAL_TAX / 100);
     cart.total = cart.subTotal + cart.taxes;
   }
-  console.log(
-    `🚀 ${new Date().toLocaleString('en-US', { timeZone: 'America/Tijuana', hour12: false })} ~ itemsInOrder:`,
-    cart,
-  );
+
+  const idCountry = address.country;
+
+  const transaction = await prisma.$transaction(async (prisma) => {
+    const order = await prisma.order.create({
+      data: {
+        idUser,
+        itemsInOrder: cart.itemsInOrder,
+        subTotal: cart.subTotal,
+        tax: cart.taxes,
+        total: cart.total,
+
+        OrderItem: {
+          createMany: {
+            data: data.map((item) => ({
+              idProduct: item.idProduct,
+              quantity: item.quantity,
+              size: item.size,
+              price:
+                products.find((product) => product.id === item.idProduct)
+                  ?.price ?? 0,
+            })),
+          },
+        },
+      },
+    });
+
+    const orderAddress = await prisma.orderAddress.create({
+      data: {
+        firstName: address.firstName,
+        lastName: address.lastName,
+        address: address.address,
+        address2: address.address2,
+        postalCode: address.postalCode,
+        city: address.city,
+        phone: address.phone,
+        idOrder: order.id,
+        idCountry,
+      },
+    });
+
+    return {
+      order,
+      orderAddress,
+    };
+  });
 };

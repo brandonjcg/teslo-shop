@@ -11,8 +11,10 @@ export const getAddressByIdUser = async (idUser: string) => {
     });
     if (!result) return null;
 
+    const { idUser: _, ...address } = result;
+
     return {
-      ...result,
+      ...address,
       country: result.idCountry,
       address2: result.address2 || '',
     };

@@ -29,7 +29,9 @@ export const createOrReplaceAddress = async (
       create: addressToUpsert,
     });
 
-    return result;
+    const { idUser: _, ...address } = result;
+
+    return address;
   } catch {
     throw new Error('Error with upserting address');
   }
