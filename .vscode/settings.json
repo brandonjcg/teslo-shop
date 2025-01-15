@@ -15,6 +15,7 @@
         "sidebar",
         "forms",
         "store",
-        "processes"
+        "processes",
+        "shopping-cart"
     ],
 }

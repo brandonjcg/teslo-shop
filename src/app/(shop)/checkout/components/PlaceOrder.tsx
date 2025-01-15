@@ -6,14 +6,17 @@ import { currencyFormat } from '@/utils';
 import clsx from 'clsx';
 import { placeOrder } from '@/actions/order/place-order';
 import { GLOBAL_TAX } from '@/constants/cart';
+import { useRouter } from 'next/navigation';
 
 export const PlaceOrder = () => {
+  const router = useRouter();
   const [loaded, setLoaded] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string>();
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);
 
   const address = useAddressStore((state) => state.address);
   const cart = useCartStore((state) => state.cart);
-  const { getSummaryInfo } = useCartStore();
+  const { getSummaryInfo, clearCart } = useCartStore();
   const { totalItems, subTotal, taxes, total } = getSummaryInfo();
 
   useEffect(() => {
@@ -28,11 +31,17 @@ export const PlaceOrder = () => {
       quantity: item.quantity,
       size: item.size,
     }));
-    // TODO: send order to server
 
-    await placeOrder(productsToOrder, address);
+    const response = await placeOrder(productsToOrder, address);
+    if (response.error) {
+      setIsPlacingOrder(false);
+      setErrorMessage(response.message);
+      return;
+    }
 
-    setIsPlacingOrder(false);
+    clearCart();
+
+    router.replace(`/orders/${response.idOrder}`);
   };
 
   if (!loaded) return <p>Loading...</p>;
@@ -82,13 +91,16 @@ export const PlaceOrder = () => {
             </a>{' '}
           </span>
         </p>
-        {/* <p className="mb-5 text-red-500">Creation error</p> */}
+
+        <p className="mb-5 text-red-500">{errorMessage} </p>
+
         <button
           className={clsx({
             'btn-primary': !isPlacingOrder,
             'btn-disabled': isPlacingOrder,
           })}
           onClick={onPlaceOrder}
+          disabled={isPlacingOrder}
         >
           Pay
         </button>

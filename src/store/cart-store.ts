@@ -15,12 +15,14 @@ interface State {
     taxes: number;
     total: number;
   };
+  clearCart: () => void;
 }
 
 export const useCartStore = create<State>()(
   persist(
     (set, get) => ({
       cart: [],
+      clearCart: () => set({ cart: [] }),
       addToCart: (product) => {
         const { cart } = get();
 
