@@ -6,13 +6,18 @@ const main = async () => {
   if (process.env.NODE_ENV !== 'development') return;
 
   // reset tables
+  await prisma.orderAddress.deleteMany();
+  await prisma.orderItem.deleteMany();
+  await prisma.order.deleteMany();
+  await prisma.userAddress.deleteMany();
+  await prisma.country.deleteMany();
   await prisma.user.deleteMany();
   await prisma.productImage.deleteMany();
   await prisma.product.deleteMany();
   await prisma.category.deleteMany();
 
   // prepare data
-  const { categories, products, users } = initialData;
+  const { categories, products, users, countries } = initialData;
   const categoriesToInsert = categories.map((name) => ({ name }));
 
   await prisma.category.createMany({
@@ -61,6 +66,10 @@ const main = async () => {
 
     await prisma.user.createMany({
       data: users,
+    });
+
+    await prisma.country.createMany({
+      data: countries,
     });
   } catch (error) {
     console.error((error as Error).message);

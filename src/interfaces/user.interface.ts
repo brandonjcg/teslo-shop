@@ -9,3 +9,8 @@ export interface IUserSession {
   updatedAt: string;
   deletedAt?: string;
 }
+
+export interface ILogin {
+  email: string;
+  password: string;
+}

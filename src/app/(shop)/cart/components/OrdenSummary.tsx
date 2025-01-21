@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useCartStore } from '@/store';
 import { currencyFormat } from '@/utils';
+import { GLOBAL_TAX } from '@/constants/cart';
 
 export const OrdenSummary = () => {
   const { getSummaryInfo } = useCartStore();
@@ -26,7 +27,7 @@ export const OrdenSummary = () => {
         <span>Sub total</span>
         <span className="text-right">{currencyFormat(subTotal)}</span>
 
-        <span>Taxes 8%</span>
+        <span>Taxes {GLOBAL_TAX}%</span>
         <span className="text-right">{currencyFormat(taxes)}</span>
 
         <span className="mt-5 text-2xl">Total</span>
@@ -41,7 +42,7 @@ export const OrdenSummary = () => {
         >
           Checkout
         </Link>
-      </div>{' '}
+      </div>
     </div>
   );
 };

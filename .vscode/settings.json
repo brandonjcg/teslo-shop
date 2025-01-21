@@ -12,6 +12,10 @@
         "auth",
         "seeds",
         "repo",
-        "sidebar"
+        "sidebar",
+        "forms",
+        "store",
+        "processes",
+        "shopping-cart"
     ],
 }

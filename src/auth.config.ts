@@ -11,6 +11,9 @@ export const authConfig = {
     newUser: '/auth/new-account',
   },
   callbacks: {
+    authorized: async ({ auth }) => {
+      return !!auth;
+    },
     jwt: async ({ token, user }) => {
       if (user) token.data = user;
 
