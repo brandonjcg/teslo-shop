@@ -144,6 +144,8 @@ model Order {
   idUser       String
   OrderItem    OrderItem[]
   OrderAddress OrderAddress?
+
+  idTransaction String?
 }
 
 model OrderItem {
