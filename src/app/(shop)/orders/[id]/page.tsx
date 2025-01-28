@@ -1,11 +1,12 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { IoCardOutline } from 'react-icons/io5';
 import clsx from 'clsx';
 import { Title } from '@/components';
 import { getOrderById } from '@/actions/order/get-order-by-id';
 import { currencyFormat } from '@/utils';
-import Link from 'next/link';
+import { PaypalButton } from '@/components/paypal/PaypalButton';
 
 interface Props {
   params: {
@@ -107,20 +108,7 @@ export default async function OrderPage({ params }: Props) {
               <span className="mt-5 text-2xl">Total</span>
               <span className="mt-5 text-2xl text-right">${order.total}</span>
             </div>
-            <div className="mt-5 mb-2 w-full">
-              <div
-                className={clsx(
-                  'flex items-center rounded-lg py-2 px-3.5 text-xs font-bold text-white mb-5',
-                  {
-                    'bg-red-500': !order.isPaid,
-                    'bg-green-500': order.isPaid,
-                  },
-                )}
-              >
-                <IoCardOutline size={30} />
-                <span className="mx-2">{statusLabel}</span>
-              </div>
-            </div>
+            <PaypalButton idOrder={id} amount={order.total} />
           </div>
         </div>
       </div>
