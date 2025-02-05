@@ -1,8 +1,14 @@
 'use client';
 
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
-import { CreateOrderActions, CreateOrderData } from '@paypal/paypal-js';
+import {
+  CreateOrderActions,
+  CreateOrderData,
+  OnApproveActions,
+  OnApproveData,
+} from '@paypal/paypal-js';
 import { setIdTransactionToOrder } from '@/actions/payments/set-id-transaction-from-paypal';
+import { paypalCheckPayment } from '@/actions/payments/paypal-check-payment';
 
 export const PaypalButton = ({
   idOrder,
@@ -43,6 +49,12 @@ export const PaypalButton = ({
 
     return idTransaction;
   };
+  const onApprove = async (data: OnApproveData, actions: OnApproveActions) => {
+    const details = await actions.order?.capture();
+    if (!details) throw new Error('Server could not capture order');
 
-  return <PayPalButtons createOrder={createOrder} />;
+    await paypalCheckPayment(details.id!);
+  };
+
+  return <PayPalButtons createOrder={createOrder} onApprove={onApprove} />;
 };

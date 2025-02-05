@@ -1,14 +1,13 @@
 'use client';
 
-import { SessionProvider } from 'next-auth/react';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
-import { NEXT_PUBLIC_PAYPAL_CLIENT_ID } from '@/config';
+import { SessionProvider } from 'next-auth/react';
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <PayPalScriptProvider
       options={{
-        clientId: NEXT_PUBLIC_PAYPAL_CLIENT_ID,
+        clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || 'emptyValue',
         intent: 'capture',
         currency: 'USD',
       }}
