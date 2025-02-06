@@ -947,6 +947,12 @@ export const initialData: SeedData = {
       password: bcryptjs.hashSync('password', 10),
       role: EnumRole.USER,
     },
+    {
+      email: 'juan.perez@gmail.com',
+      name: 'Juan Perez',
+      password: bcryptjs.hashSync('password', 10),
+      role: EnumRole.USER,
+    },
   ],
   countries,
 };

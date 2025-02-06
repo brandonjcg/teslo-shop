@@ -107,13 +107,13 @@ export const SidebarMenu = () => {
             />
             <SidebarMenuItem
               title="Orders"
-              path="/orders"
+              path="/admin/orders"
               onClick={closeSidebarMenu}
               icon={<IoTicketOutline size={30} />}
             />
             <SidebarMenuItem
               title="Users"
-              path="/users"
+              path="/admin/users"
               onClick={closeSidebarMenu}
               icon={<IoPeopleOutline size={30} />}
             />
