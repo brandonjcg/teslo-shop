@@ -2,6 +2,7 @@
 
 import { Pagination } from '@/components';
 import { IUser } from '@/interfaces';
+import { changeRole } from '@/actions/user/change-role-to-user';
 
 interface Props {
   users: IUser[];
@@ -59,7 +60,12 @@ export const UserTable = ({ users, totalPages }: Props) => {
                 <select
                   className="text-sm text-gray-900 w-full p-2"
                   value={item.role}
-                  onChange={(e) => console.log(e.target.value)}
+                  onChange={(e) =>
+                    changeRole({
+                      idUser: item.id,
+                      role: e.target.value,
+                    })
+                  }
                 >
                   <option value="admin">Admin</option>
                   <option value="user">User</option>
