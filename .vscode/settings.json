@@ -16,6 +16,7 @@
         "forms",
         "store",
         "processes",
-        "shopping-cart"
+        "shopping-cart",
+        "users"
     ],
 }

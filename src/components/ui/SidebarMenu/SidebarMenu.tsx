@@ -113,7 +113,7 @@ export const SidebarMenu = () => {
             />
             <SidebarMenuItem
               title="Users"
-              path="/users"
+              path="/admin/users"
               onClick={closeSidebarMenu}
               icon={<IoPeopleOutline size={30} />}
             />
