@@ -101,7 +101,7 @@ export const SidebarMenu = () => {
           <>
             <SidebarMenuItem
               title="Products"
-              path="/gender/men"
+              path="/admin/products"
               icon={<IoShirtOutline size={30} />}
               onClick={closeSidebarMenu}
             />
