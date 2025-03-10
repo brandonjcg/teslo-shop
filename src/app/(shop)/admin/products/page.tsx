@@ -19,7 +19,7 @@ export default async function AdminListProducts({ searchParams }: Props) {
     <>
       <Title title="Products" />
       <div className="flex justify-end mb-5">
-        <Link href="/products/new" className="btn-primary">
+        <Link href="/admin/products/new" className="btn-primary">
           Create product
         </Link>
       </div>
@@ -81,7 +81,7 @@ export default async function AdminListProducts({ searchParams }: Props) {
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                   <Link href={`/product/${item.slug}`}>
                     <Image
-                      src={`/products/${item.ProductImage[0].url}`}
+                      src={`/products/${item.ProductImage?.[0]?.url}`}
                       alt={item.title}
                       width={50}
                       height={50}
@@ -109,7 +109,10 @@ export default async function AdminListProducts({ searchParams }: Props) {
                   {item.sizes.join(', ')}
                 </td>
                 <td className="text-sm text-gray-900 font-light px-6 ">
-                  <Link href={`/orders/${item.id}`} className="hover:underline">
+                  <Link
+                    href={`/admin/products/${item.slug}`}
+                    className="hover:underline"
+                  >
                     View product
                   </Link>
                 </td>
