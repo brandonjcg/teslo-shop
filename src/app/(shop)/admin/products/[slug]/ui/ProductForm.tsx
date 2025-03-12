@@ -7,6 +7,7 @@ import { createUpdateProduct } from '@/actions/products/create-update';
 import { Product } from '@/interfaces/products.interface';
 import { ICategory } from '@/interfaces/catalog.interface';
 import { ProductImage } from '@/components/product/product-image/ProductImage';
+import { useRouter } from 'next/navigation';
 
 interface Props {
   product: Partial<Product> & { ProductImage?: ProductImagePrisma[] };
@@ -28,6 +29,8 @@ interface FormInputs {
 const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
 export const ProductForm = ({ product, categories }: Props) => {
+  const router = useRouter();
+
   const { handleSubmit, register, getValues, setValue, watch } =
     useForm<FormInputs>({
       defaultValues: {
@@ -56,7 +59,10 @@ export const ProductForm = ({ product, categories }: Props) => {
     formData.append('idCategory', productToSave.idCategory);
     formData.append('gender', productToSave.gender);
 
-    const result = await createUpdateProduct(formData);
+    const { ok } = await createUpdateProduct(formData);
+    if (!ok) return alert('Error in the server');
+
+    router.replace(`/admin/products/${productToSave.slug}`);
   };
 
   const onSizeChange = (size: string) => {

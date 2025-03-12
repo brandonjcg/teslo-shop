@@ -2,6 +2,7 @@
 
 import prisma from '@/lib/prisma';
 import { Gender, Size } from '@prisma/client';
+import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 
 const productSchema = z.object({
@@ -35,7 +36,7 @@ export const createUpdateProduct = async (formData: FormData) => {
 
     const { id, ...restProduct } = product;
 
-    const transaction = await prisma.$transaction(async (transaction) => {
+    await prisma.$transaction(async (transaction) => {
       const sizes = restProduct.sizes as Size[];
       const tags = restProduct.tags
         .split(',')
@@ -61,7 +62,13 @@ export const createUpdateProduct = async (formData: FormData) => {
       return product;
     });
 
-    return transaction;
+    revalidatePath('/admin/products');
+    revalidatePath(`/admin/products/${product.slug}`);
+    revalidatePath(`/product/${product.slug}`);
+
+    return {
+      ok: true,
+    };
   } catch (error) {
     throw error;
   }
