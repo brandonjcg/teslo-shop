@@ -1,15 +1,15 @@
 'use client';
 
-import { ProductImage } from '@prisma/client';
+import { ProductImage as ProductImagePrisma } from '@prisma/client';
 import clsx from 'clsx';
-import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { createUpdateProduct } from '@/actions/products/create-update';
 import { Product } from '@/interfaces/products.interface';
 import { ICategory } from '@/interfaces/catalog.interface';
+import { ProductImage } from '@/components/product/product-image/ProductImage';
 
 interface Props {
-  product: Partial<Product> & { ProductImage?: ProductImage[] };
+  product: Partial<Product> & { ProductImage?: ProductImagePrisma[] };
   categories: ICategory[];
 }
 
@@ -34,7 +34,6 @@ export const ProductForm = ({ product, categories }: Props) => {
         ...product,
         tags: product.tags?.join(', '),
         sizes: product.sizes || [],
-        // TODO: Fix images
       },
     });
 
@@ -198,9 +197,9 @@ export const ProductForm = ({ product, categories }: Props) => {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {product.ProductImage?.map((image) => (
               <div key={image.id} className="relative">
-                <Image
+                <ProductImage
                   alt={product.title ?? ''}
-                  src={`/products/${image.url}`}
+                  src={image.url}
                   width={300}
                   height={300}
                   className="rounded-t shadow-md"

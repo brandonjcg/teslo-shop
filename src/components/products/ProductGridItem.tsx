@@ -1,9 +1,9 @@
 'use client';
 
 import { Product } from '@/interfaces';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import { ProductImage } from '../product/product-image/ProductImage';
 
 interface Props {
   product: Product;
@@ -14,8 +14,8 @@ export const ProductGridItem = ({ product }: Props) => {
 
   return (
     <div className="rounded-md overflow-hidden fade-in">
-      <Image
-        src={`/products/${displayImage} `}
+      <ProductImage
+        src={displayImage}
         alt={product.title}
         width={500}
         height={500}

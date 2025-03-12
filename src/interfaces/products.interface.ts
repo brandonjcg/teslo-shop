@@ -47,7 +47,6 @@ export interface ProductOfCart {
   image: string;
 }
 
-// user
 export enum EnumRole {
   ADMIN = 'admin',
   USER = 'user',

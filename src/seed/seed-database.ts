@@ -5,7 +5,6 @@ import { initialData } from './seed';
 const main = async () => {
   if (process.env.NODE_ENV !== 'development') return;
 
-  // reset tables
   await prisma.orderAddress.deleteMany();
   await prisma.orderItem.deleteMany();
   await prisma.order.deleteMany();
@@ -16,7 +15,6 @@ const main = async () => {
   await prisma.product.deleteMany();
   await prisma.category.deleteMany();
 
-  // prepare data
   const { categories, products, users, countries } = initialData;
   const categoriesToInsert = categories.map((name) => ({ name }));
 
