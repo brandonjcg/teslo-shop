@@ -1,9 +1,10 @@
 'use server';
 
 import { auth } from '@/auth.config';
-import { GLOBAL_TAX } from '@/constants/cart';
-import { IAddressForm, Size } from '@/interfaces';
 import prisma from '@/lib/prisma';
+import { GLOBAL_TAX } from '@/constants/cart';
+import { Size } from '@/interfaces/products.interface';
+import { IAddressForm } from '@/interfaces/address.interface';
 
 interface IProductToOrder {
   idProduct: string;

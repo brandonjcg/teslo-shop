@@ -1,5 +1,5 @@
 import prisma from '@/lib/prisma';
-import { IProductSeed } from '@/interfaces';
+import { type IProductSeed } from '@/interfaces/products.interface';
 import { initialData } from './seed';
 
 const main = async () => {

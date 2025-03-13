@@ -1,5 +1,5 @@
 import { monsserat } from '@/fonts';
-import { RegisterForm } from './components';
+import { RegisterForm } from './components/RegisterForm';
 
 export default function NewAccountPage() {
   return (

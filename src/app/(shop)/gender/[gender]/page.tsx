@@ -1,10 +1,11 @@
 export const revalidate = 60;
 
 import { notFound, redirect } from 'next/navigation';
-import { Pagination, Title } from '@/components';
-import { ProductGrid } from '@/components';
-import { Gender } from '@/interfaces';
-import { getPaginatedProducts } from '@/actions';
+import { getPaginatedProducts } from '@/actions/products/products-pagination';
+import { Title } from '@/components/ui/Title';
+import { Pagination } from '@/components/ui/Pagination/Pagination';
+import { ProductGrid } from '@/components/products/ProductGrid';
+import { Gender } from '@/interfaces/products.interface';
 
 interface Props {
   params: {

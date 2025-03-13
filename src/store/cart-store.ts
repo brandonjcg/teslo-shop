@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { ProductOfCart } from '@/interfaces';
 import { GLOBAL_TAX } from '@/constants/cart';
+import { type ProductOfCart } from '@/interfaces/products.interface';
 
 interface State {
   cart: ProductOfCart[];

@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { QuantitySelector, SizeSelector } from '@/components';
-import { Product, Size } from '@/interfaces';
-import { useCartStore } from '@/store';
+import { useCartStore } from '@/store/cart-store';
+import { Product, Size } from '@/interfaces/products.interface';
+import { SizeSelector } from '@/components/product/size-selector/SizeSelector';
+import { QuantitySelector } from '@/components/product/quantity-selector/QuantitySelector';
 
 interface Props {
   product: Product;

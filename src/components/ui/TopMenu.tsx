@@ -1,10 +1,12 @@
 'use client';
 
-import { monsserat } from '@/fonts';
-import { useCartStore, useUIStore } from '@/store';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { IoCartOutline, IoSearchOutline } from 'react-icons/io5';
+
+import { monsserat } from '@/fonts';
+import { useCartStore } from '@/store/cart-store';
+import { useUIStore } from '@/store/ui-store';
 
 export const TopMenu = () => {
   const openSidebarMenu = useUIStore((state) => state.openSidebarMenu);

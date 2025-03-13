@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useCartStore } from '@/store';
-import { currencyFormat } from '@/utils';
+import { useCartStore } from '@/store/cart-store';
+import { currencyFormat } from '@/utils/number';
 import { ProductImage } from '@/components/product/product-image/ProductImage';
 
 export const ProductsInCart = () => {

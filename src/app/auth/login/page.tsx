@@ -1,5 +1,5 @@
 import { monsserat } from '@/fonts';
-import { LoginForm } from './ui';
+import { LoginForm } from './ui/LoginForm';
 
 export default function LoginPage() {
   return (

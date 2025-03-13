@@ -1,6 +1,6 @@
-import { IAddressForm } from '@/interfaces';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { IAddressForm } from '@/interfaces/address.interface';
 
 interface State {
   address: IAddressForm;

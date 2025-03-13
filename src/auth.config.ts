@@ -3,7 +3,7 @@ import Credentials from 'next-auth/providers/credentials';
 import { z } from 'zod';
 import bcryptjs from 'bcryptjs';
 import prisma from './lib/prisma';
-import { IUserSession } from './interfaces';
+import { IUserSession } from './interfaces/user.interface';
 
 export const authConfig = {
   pages: {

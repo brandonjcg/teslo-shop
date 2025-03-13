@@ -1,6 +1,8 @@
 import Link from 'next/link';
-import { Title } from '@/components';
-import { OrdenSummary, ProductsInCart } from './components';
+
+import { Title } from '@/components/ui/Title';
+import { ProductsInCart } from './components/ProductsInCart';
+import { OrdenSummary } from './components/OrdenSummary';
 
 export default function CartPage() {
   return (

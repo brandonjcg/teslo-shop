@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { IoCardOutline } from 'react-icons/io5';
-import { Pagination, Title } from '@/components';
 import { getOrderByUser } from '@/actions/order/get-order-by-user';
+import { Title } from '@/components/ui/Title';
+import { Pagination } from '@/components/ui/Pagination/Pagination';
 
 interface Props {
   searchParams: {

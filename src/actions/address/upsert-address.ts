@@ -1,7 +1,7 @@
 'use server';
 
-import { IAddressForm } from '@/interfaces';
 import prisma from '@/lib/prisma';
+import { IAddressForm } from '@/interfaces/address.interface';
 
 export const createOrReplaceAddress = async (
   addressParam: IAddressForm,

@@ -1,8 +1,8 @@
 'use client';
 
-import { Product } from '@/interfaces';
 import Link from 'next/link';
 import { useState } from 'react';
+import { type Product } from '@/interfaces/products.interface';
 import { ProductImage } from '../product/product-image/ProductImage';
 
 interface Props {
