@@ -1,13 +1,14 @@
 'use client';
 
-import { ProductImage as ProductImagePrisma } from '@prisma/client';
 import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
+import { ProductImage as ProductImagePrisma } from '@prisma/client';
 import { createUpdateProduct } from '@/actions/products/create-update';
 import { Product } from '@/interfaces/products.interface';
 import { ICategory } from '@/interfaces/catalog.interface';
 import { ProductImage } from '@/components/product/product-image/ProductImage';
-import { useRouter } from 'next/navigation';
+import { deleteProductImage } from '@/actions/products/delete-product-image';
 
 interface Props {
   product: Partial<Product> & { ProductImage?: ProductImagePrisma[] };
@@ -24,6 +25,7 @@ interface FormInputs {
   tags: string;
   gender: 'men' | 'women' | 'kid' | 'unisex';
   idCategory: string;
+  images?: FileList;
 }
 
 const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
@@ -37,6 +39,7 @@ export const ProductForm = ({ product, categories }: Props) => {
         ...product,
         tags: product.tags?.join(', '),
         sizes: product.sizes || [],
+        images: undefined,
       },
     });
 
@@ -45,7 +48,7 @@ export const ProductForm = ({ product, categories }: Props) => {
   const onSubmit = async (data: FormInputs) => {
     const formData = new FormData();
 
-    const { ...productToSave } = data;
+    const { images, ...productToSave } = data;
 
     if (product.id) formData.append('id', product.id ?? '');
 
@@ -58,6 +61,11 @@ export const ProductForm = ({ product, categories }: Props) => {
     formData.append('tags', productToSave.tags);
     formData.append('idCategory', productToSave.idCategory);
     formData.append('gender', productToSave.gender);
+
+    if (images)
+      Array.from(images).forEach((image) => {
+        formData.append('images', image);
+      });
 
     const { ok } = await createUpdateProduct(formData);
     if (!ok) return alert('Error in the server');
@@ -195,25 +203,34 @@ export const ProductForm = ({ product, categories }: Props) => {
             <span>Fotos</span>
             <input
               type="file"
+              {...register('images')}
               multiple
               className="p-2 border rounded-md bg-gray-200"
-              accept="image/png, image/jpeg"
+              accept="image/png, image/jpeg, image/avif"
             />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {product.ProductImage?.map((image) => (
-              <div key={image.id} className="relative">
+              <div
+                key={image.id}
+                className="relative flex flex-col rounded-lg shadow-md"
+              >
                 <ProductImage
                   alt={product.title ?? ''}
                   src={image.url}
                   width={300}
                   height={300}
-                  className="rounded-t shadow-md"
+                  className="object-cover w-full h-full"
                 />
                 <button
                   type="button"
                   className="btn-danger rounded-b-xl w-full"
-                  onClick={() => console.log(image.id, image.url)}
+                  onClick={() =>
+                    deleteProductImage({
+                      idImage: image.id,
+                      urlImage: image.url,
+                    })
+                  }
                 >
                   Eliminar
                 </button>

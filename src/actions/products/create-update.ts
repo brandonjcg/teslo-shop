@@ -4,6 +4,10 @@ import prisma from '@/lib/prisma';
 import { Gender, Size } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
+import { v2 as cloudinary } from 'cloudinary';
+import { CLOUDINARY_URL } from '@/config';
+
+cloudinary.config(CLOUDINARY_URL);
 
 const productSchema = z.object({
   id: z.string().uuid().optional(),
@@ -59,6 +63,16 @@ export const createUpdateProduct = async (formData: FormData) => {
             },
           });
 
+      const imagesList = formData.getAll('images');
+      if (imagesList) {
+        const images = await uploadImages(imagesList as File[]);
+        if (!images) throw new Error('Error uploading images');
+
+        await transaction.productImage.createMany({
+          data: images.map((url) => ({ idProduct: product.id, url })),
+        });
+      }
+
       return product;
     });
 
@@ -69,6 +83,25 @@ export const createUpdateProduct = async (formData: FormData) => {
     return {
       ok: true,
     };
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const uploadImages = async (images: File[]) => {
+  try {
+    const promises = images.map(async (image) => {
+      const buffer = await image.arrayBuffer();
+      const base64Image = Buffer.from(buffer).toString('base64');
+
+      const response = await cloudinary.uploader.upload(
+        `data:image/png;base64,${base64Image}`,
+      );
+
+      return response.secure_url;
+    });
+
+    return Promise.all(promises);
   } catch (error) {
     throw error;
   }
