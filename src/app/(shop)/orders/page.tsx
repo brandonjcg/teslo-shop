@@ -1,10 +1,18 @@
 import Link from 'next/link';
 import { IoCardOutline } from 'react-icons/io5';
-import { Title } from '@/components';
+import { Pagination, Title } from '@/components';
 import { getOrderByUser } from '@/actions/order/get-order-by-user';
 
-export default async function ListOrders() {
-  const orders = await getOrderByUser();
+interface Props {
+  searchParams: {
+    page: string;
+  };
+}
+
+export default async function ListOrders({ searchParams }: Props) {
+  const { data, totalPages } = await getOrderByUser({
+    page: +searchParams.page || 1,
+  });
 
   return (
     <>
@@ -41,7 +49,7 @@ export default async function ListOrders() {
             </tr>
           </thead>
           <tbody>
-            {orders?.map((item) => (
+            {data?.map((item) => (
               <tr
                 key={item.id}
                 className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
@@ -67,7 +75,7 @@ export default async function ListOrders() {
             ))}
           </tbody>
         </table>
-        {/* TODO: add pagination */}
+        <Pagination totalPages={totalPages} />
       </div>
     </>
   );

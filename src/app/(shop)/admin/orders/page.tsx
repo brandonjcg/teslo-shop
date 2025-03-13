@@ -1,8 +1,8 @@
 import Link from 'next/link';
+import clsx from 'clsx';
 import { IoCardOutline } from 'react-icons/io5';
 import { Pagination, Title } from '@/components';
 import { getPaginatedOrders } from '@/actions/order/get-paginated-orders';
-import clsx from 'clsx';
 
 interface Props {
   searchParams: {
