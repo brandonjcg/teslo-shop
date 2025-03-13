@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getStockBySlug } from '@/actions/products';
+
 import { monsserat } from '@/fonts';
+import { getStockBySlug } from '@/actions/products/read-products';
 
 interface Props {
   slug: string;

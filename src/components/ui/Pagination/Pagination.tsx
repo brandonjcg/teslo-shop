@@ -3,8 +3,8 @@
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { IoChevronBackOutline, IoChevronForwardOutline } from 'react-icons/io5';
-import { generatePaginationNumbers } from '@/utils';
 import clsx from 'clsx';
+import { generatePaginationNumbers } from '@/utils/pagination';
 
 export const Pagination = ({ totalPages }: { totalPages: number }) => {
   const pathname = usePathname();

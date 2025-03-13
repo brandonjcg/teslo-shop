@@ -1,7 +1,7 @@
 'use client';
 
-import { Pagination } from '@/components';
-import { IUser } from '@/interfaces';
+import { Pagination } from '@/components/ui/Pagination/Pagination';
+import { IUser } from '@/interfaces/user.interface';
 import { changeRole } from '@/actions/user/change-role-to-user';
 
 interface Props {

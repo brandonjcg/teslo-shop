@@ -4,7 +4,9 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Link from 'next/link';
 import clsx from 'clsx';
-import { login, registerUser } from '@/actions';
+
+import { registerUser } from '@/actions/auth/register';
+import { login } from '@/actions/auth/actions';
 
 interface FormInputs {
   fullName: string;

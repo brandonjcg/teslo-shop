@@ -12,7 +12,7 @@ import {
   IoShirtOutline,
   IoTicketOutline,
 } from 'react-icons/io5';
-import { useUIStore } from '@/store';
+import { useUIStore } from '@/store/ui-store';
 import { SidebarMenuItem } from './SidebarMenuItem';
 
 export const SidebarMenu = () => {

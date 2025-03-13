@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 import { useFormState } from 'react-dom';
 import { IoInformationOutline } from 'react-icons/io5';
-import { authenticate } from '@/actions';
+import { authenticate } from '@/actions/auth/actions';
 import { LoginButton } from './LoginButton';
 
 export const LoginForm = () => {

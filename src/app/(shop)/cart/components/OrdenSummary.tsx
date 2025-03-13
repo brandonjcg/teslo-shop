@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useCartStore } from '@/store';
-import { currencyFormat } from '@/utils';
+import { useCartStore } from '@/store/cart-store';
+import { currencyFormat } from '@/utils/number';
 import { GLOBAL_TAX } from '@/constants/cart';
 
 export const OrdenSummary = () => {

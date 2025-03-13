@@ -1,13 +1,16 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import clsx from 'clsx';
-import { IAddressForm, ISeedCountry } from '@/interfaces';
-import { useAddressStore } from '@/store';
-import { deleteAddress, createOrReplaceAddress } from '@/actions';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import clsx from 'clsx';
+
+import { useAddressStore } from '@/store/address-store';
+import { IAddressForm } from '@/interfaces/address.interface';
+import { ISeedCountry } from '@/interfaces/countries.interface';
+import { deleteAddress } from '@/actions/address/delete-address';
+import { createOrReplaceAddress } from '@/actions/address/upsert-address';
 
 interface Props {
   countries: ISeedCountry[];

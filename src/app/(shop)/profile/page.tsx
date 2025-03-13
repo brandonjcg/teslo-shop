@@ -1,5 +1,5 @@
 import { auth } from '@/auth.config';
-import { Title } from '@/components';
+import { Title } from '@/components/ui/Title';
 import { redirect } from 'next/navigation';
 
 export default async function ProfilePage() {

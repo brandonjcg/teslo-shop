@@ -1,12 +1,14 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useAddressStore, useCartStore } from '@/store';
-import { currencyFormat } from '@/utils';
+import { useRouter } from 'next/navigation';
 import clsx from 'clsx';
+
+import { useAddressStore } from '@/store/address-store';
+import { useCartStore } from '@/store/cart-store';
+import { currencyFormat } from '@/utils/number';
 import { placeOrder } from '@/actions/order/place-order';
 import { GLOBAL_TAX } from '@/constants/cart';
-import { useRouter } from 'next/navigation';
 
 export const PlaceOrder = () => {
   const router = useRouter();

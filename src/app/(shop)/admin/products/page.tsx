@@ -1,8 +1,9 @@
 import Link from 'next/link';
-import { Pagination, Title } from '@/components';
-import { getPaginatedProducts } from '@/actions';
-import { currencyFormat } from '@/utils';
+import { currencyFormat } from '@/utils/number';
 import { ProductImage } from '@/components/product/product-image/ProductImage';
+import { Title } from '@/components/ui/Title';
+import { Pagination } from '@/components/ui/Pagination/Pagination';
+import { getPaginatedProducts } from '@/actions/products/products-pagination';
 
 interface Props {
   searchParams: {

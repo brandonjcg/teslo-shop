@@ -1,4 +1,4 @@
-import { Title } from '@/components';
+import { Title } from '@/components/ui/Title';
 import { UserTable } from './components/UserTable';
 import { getPaginatedUsers } from '@/actions/user/get-paginated-orders';
 

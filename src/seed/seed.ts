@@ -1,5 +1,5 @@
 import bcryptjs from 'bcryptjs';
-import { EnumRole, SeedData, types } from '@/interfaces';
+import { EnumRole, SeedData, types } from '@/interfaces/products.interface';
 
 export interface ICountrySeed {
   name: string;

@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Title } from '@/components';
+import { Title } from '@/components/ui/Title';
 import { getOrderById } from '@/actions/order/get-order-by-id';
-import { currencyFormat } from '@/utils';
+import { currencyFormat } from '@/utils/number';
 import { PaypalButton } from '@/components/paypal/PaypalButton';
 import { OrderStatus } from '@/components/orders/OrderStatus';
 import { ProductImage } from '@/components/product/product-image/ProductImage';

@@ -1,4 +1,4 @@
-import { ICountrySeed } from '@/seed';
+import { ICountrySeed } from '@/seed/seed';
 
 export interface Product {
   id: string;
