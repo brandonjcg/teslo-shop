@@ -7,11 +7,7 @@ export const getProductBySlug = async (slug: string) => {
     const product = await prisma.product.findUnique({
       where: { slug },
       include: {
-        ProductImage: {
-          select: {
-            url: true,
-          },
-        },
+        ProductImage: true,
       },
     });
     if (!product) return null;

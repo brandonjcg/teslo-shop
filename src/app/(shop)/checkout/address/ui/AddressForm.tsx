@@ -167,9 +167,7 @@ export const AddressForm = ({ countries, userStoredAddress = {} }: Props) => {
 
         <button
           disabled={!isValid}
-          // href="/checkout"
           type="submit"
-          // className="btn-primary flex w-full sm:w-1/2 justify-center "
           className={clsx({
             'btn-primary': isValid,
             'btn-disabled': !isValid,

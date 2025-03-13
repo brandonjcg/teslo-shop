@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Title } from '@/components';
@@ -6,6 +5,7 @@ import { getOrderById } from '@/actions/order/get-order-by-id';
 import { currencyFormat } from '@/utils';
 import { PaypalButton } from '@/components/paypal/PaypalButton';
 import { OrderStatus } from '@/components/orders/OrderStatus';
+import { ProductImage } from '@/components/product/product-image/ProductImage';
 
 interface Props {
   params: {
@@ -30,8 +30,8 @@ export default async function OrderPage({ params }: Props) {
             <OrderStatus isPaid={order.isPaid} statusLabel={statusLabel} />
             {order.OrderItem.map((item) => (
               <div key={item.id} className="flex mb-5">
-                <Image
-                  src={`/products/${item.product.ProductImage[0].url}`}
+                <ProductImage
+                  src={item.product.ProductImage[0].url}
                   width={100}
                   height={100}
                   alt={item.product.title}

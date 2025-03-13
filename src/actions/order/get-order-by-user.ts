@@ -3,23 +3,45 @@
 import prisma from '@/lib/prisma';
 import { auth } from '@/auth.config';
 
-export const getOrderByUser = async () => {
-  const session = await auth();
-  if (!session?.user) return null;
+export const getOrderByUser = async ({
+  page = 1,
+  take = 12,
+}: {
+  page?: number;
+  take?: number;
+}) => {
+  try {
+    const session = await auth();
+    if (!session?.user) throw new Error('Unauthorized');
 
-  const order = await prisma.order.findMany({
-    where: { idUser: session.user.id },
-    select: {
-      id: true,
-      isPaid: true,
-      OrderAddress: {
-        select: {
-          firstName: true,
-          lastName: true,
+    if (isNaN(Number(page))) page = 1;
+    if (page < 1) page = 1;
+
+    const orders = await prisma.order.findMany({
+      take,
+      skip: (page - 1) * take,
+      orderBy: { createdAt: 'desc' },
+      where: { idUser: session.user.id },
+      select: {
+        id: true,
+        isPaid: true,
+        OrderAddress: {
+          select: {
+            firstName: true,
+            lastName: true,
+          },
         },
       },
-    },
-  });
+    });
 
-  return order;
+    const totalRows = await prisma.order.count();
+
+    return {
+      currentPage: page,
+      totalPages: Math.ceil(totalRows / take),
+      data: orders,
+    };
+  } catch (error) {
+    throw error;
+  }
 };

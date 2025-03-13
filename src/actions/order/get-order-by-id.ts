@@ -7,8 +7,16 @@ export const getOrderById = async (idOrder: string) => {
   const session = await auth();
   if (!session?.user) return null;
 
+  const where = {
+    id: idOrder,
+    idUser:
+      session?.user.role.toLocaleLowerCase() !== 'admin'
+        ? session.user.id
+        : undefined,
+  };
+
   const order = await prisma.order.findUnique({
-    where: { id: idOrder, idUser: session.user.id },
+    where,
     select: {
       id: true,
       isPaid: true,
